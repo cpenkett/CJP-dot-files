@@ -1,3 +1,10 @@
+# General
+.gitignore
+*~
+.*.sw[a-z]
+#*#
+
+# Python
 *.py[cod]
 
 # C extensions
