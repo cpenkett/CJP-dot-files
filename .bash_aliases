@@ -63,12 +63,16 @@ alias gb='git branch'
 alias gbv='git branch -v'
 alias gcb='git checkout -b' # Potential UNIX command
 alias gch='git cherry-pick -x'
+alias gct='git checkout --track'
 alias gco='git checkout' # Potential UNIX command
 alias gcv='git commit -v' # Potential UNIX command
 alias gd='git diff'
 alias gds='git diff --summary'
+alias gf='git fetch'
 alias gl='git log --graph --relative-date'
 alias glg='git log --date=local'
+alias gpl='git pull'
+alias gps='git push'
 alias gr='git remote'
 alias grs='git remote show'
 alias grso='git remote show origin'
@@ -96,6 +100,7 @@ alias pp="perl -ne 's/(.{1,70})\s/\$1\n/g; \$t .= \$_; END {print \$t}'" # Poten
 alias makefasta="perl -ne 's/(.{1,70})/\$1\n/g if not /^>/; \$t .= \$_; END {\$t =~ s/\n>/>/g; chomp \$t; print \$t}'"
 
 alias qu="qstat -u $USER"
+alias sq="squeue -u $USER" # Potential UNIX command
 
 alias sv='samtools view' # Potential UNIX command
 alias si='samtools index'
