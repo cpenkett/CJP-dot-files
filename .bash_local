@@ -1,0 +1,15 @@
+snps="ESSENTIAL_SPLICE_SITE|FRAMESHIFT_CODING|NON_SYNONYMOUS_CODING|SPLICE_SITE|STOP_GAINED|STOP_LOST|WITHIN_MATURE_miRNA"
+nosnps="INTRONIC|INTERGENIC"
+
+#alias R="$HOME/src/R-2.14.0/bin/R"
+
+#alias gatk="java -Xmx2g -Djava.io.tmpdir=$HOME/scratch/tmp -jar $HOME/src/GenomeAnalysisTK-1.1-23-g8072bd9/GenomeAnalysisTK.jar"
+#alias igv="sh $HOME/src/IGV_1.5.64/igv_linux-64.sh"
+alias igv2="sh $HOME/src/IGV_2.3.8/igv_linux-64.sh"
+alias cramtools='java -jar $HOME/src/cramtools-2.0.jar' 
+
+alias musb='sudo mount -w /dev/sdb /media/usb'
+alias uusb='sudo umount /media/usb'
+alias wdvd='sudo mount -wt iso9660 /dev/scd0 /media/cdrom0'
+alias rdvd='sudo mount -t iso9660 /dev/scd0 /media/cdrom0'
+alias udvd='sudo umount /media/cdrom0'

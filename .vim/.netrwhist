@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/cjp64/src/zlib-1.2.7/examples'
+let g:netrw_dirhist_2='/home/cjp64/src/vcftools_0.1.10/cpp'
+let g:netrw_dirhist_3='/home/cjp64/project/ubuntu'
+let g:netrw_dirhist_4='/home/cjp64/workspace/ngs/piper_web/app'

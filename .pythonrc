@@ -1,0 +1,45 @@
+import atexit
+import os
+import readline
+import rlcompleter
+
+readline.parse_and_bind("tab: complete")
+
+historyPath = os.path.expanduser("~/.pyhistory")
+
+def make_codon_table():
+  bases = ['t', 'c', 'a', 'g']
+  codons = [ a + b + c for a in bases for b in bases for c in bases ]
+  amino_acids = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG"
+  codon_table = dict(zip(codons, amino_acids))
+  return codon_table
+
+def translate(seq, withstops=True):
+  codon_table = make_codon_table()
+  seq = seq.lower().replace('\n', '').replace(' ', '')
+  peptide = ''
+  for i in xrange(0, len(seq), 3):
+    codon = seq[i: i+3]
+    amino_acid = codon_table.get(codon, '-')
+    if amino_acid != '*':
+      peptide += amino_acid
+    else:
+      if withstops is True:
+        peptide += '*'
+      else:
+        break
+  return peptide
+
+def revcomp(dna):
+  import string
+  return dna.upper()[::-1].translate(string.maketrans("ACGT", "TGCA") )
+
+def save_history(historyPath=historyPath):
+  import readline
+  readline.write_history_file(historyPath)
+
+if os.path.exists(historyPath):
+  readline.read_history_file(historyPath)
+
+atexit.register(save_history)
+del os, atexit, readline, rlcompleter, save_history, historyPath

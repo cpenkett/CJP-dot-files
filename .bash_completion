@@ -1,0 +1,2 @@
+#complete -f -X '!*.@(bam|sam|fasta|fa|faa|fna|fsa|fasta.gz|fa.gz|faa.gz|fna.gz|fsa.gz)' samtools sf si sv svx
+#complete -f -X '!*.@(fastq|fq|fastq.gz|fq.gz|sai|fasta|fa|faa|fna|fsa|fasta.gz|fa.gz|faa.gz|fna.gz|fsa.gz)' bwa bowtie smalt

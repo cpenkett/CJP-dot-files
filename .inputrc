@@ -1,0 +1,99 @@
+#set editing-mode vi
+#set keymap vi
+
+#$if mode=vi
+
+#"\C-a": beginning-of-line
+#"\C-e": end-of-line
+
+#$endif
+
+$if mode=emacs
+
+#set bell-style visible
+set expand-tilde on
+set meta-flag on
+set convert-meta on
+set input-meta on
+set output-meta on
+set visible-stats on
+
+set completion-ignore-case on
+set mark-directories on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set completion-query-items 500
+set horizontal-scroll-mode off
+set mark-symlinked-directories on
+set page-completions off
+
+# magic-space for bash, eg "!ls "
+$if Bash
+  Space: magic-space
+$endif
+
+"\C-g": menu-complete
+#"\C-g": possible-completions
+#"\e/": dabbrev-expand
+
+"\eg": history-expand-line
+
+# home and page-down keys
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+#"\e[5~": beginning-of-history
+#"\e[6~": end-of-history
+
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+# <- and ->
+#"\e[D": backward-word
+#"\e[C": forward-word
+
+# shift <- and shift ->
+"\e[1;2D": backward-word
+"\e[1;2C": forward-word
+
+# alt <- and alt ->
+"\e[1;3D": backward-word
+"\e[1;3C": forward-word
+
+# ctrl <- and ctrl ->
+"\e[1;5D": vi-bword
+"\e[1;5C": vi-fword
+
+# alternative mappings for some keys
+#"\e[1;3D": vi-prev-word
+#"\e[1;3C": vi-next-word
+
+#"\e[1;5D": shell-backward-word
+#"\e[1;5C": shell-forward-word
+
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+
+# ctrl up and ctrl down
+#"^[[1;5A": copy-region-as-kill
+#"^[[1;5B": kill-region
+
+#"\ew": copy-region-as-kill
+#"\C-w": kill-region
+#"\ew": shell-backward-kill-word
+
+"\eE": vi-eword
+"\eW": vi-fword
+"\eF": vi-fword
+"\eB": vi-bword
+"\ee": vi-end-word
+#"\ew": vi-next-word
+"\ef": vi-next-word
+"\eb": vi-prev-word
+#"\ed": vi-delete
+
+$endif

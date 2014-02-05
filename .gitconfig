@@ -1,0 +1,91 @@
+[user]
+  name = Chris Penkett
+  email = cjp64@cam.ac.uk
+[alias]
+  a = add -A
+  ap = add --patch
+
+  s = status -s
+  st = status
+
+  ca = commit -a
+  c = commit -v
+  ci = commit
+
+  co = checkout
+  nb = checkout -b
+
+  ss = stash
+  sl = stash list
+  sa = stash apply
+  sd = stash drop
+  sc = stash clear
+
+  b = branch -v
+  br = branch
+
+  d = diff
+  di = diff
+  dh = diff HEAD
+  dc= diff --cached
+  dis = diff --staged
+
+  l = log --graph --relative-date
+  lg = log --date=local
+  nlog = log --pretty=medium
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changelog = log --pretty=format:\" * %s\"
+  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+
+  r = remote -v
+  t = tag -l
+
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+
+  last = log -1 HEAD
+  cp = cherry-pick -x
+[color]
+  #branch = auto
+  #diff = auto
+  interactive = auto
+  status = auto
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[core]
+  #autocrlf = false
+  editor = vim
+  #excludesfile = $HOME/.gitignore
+[branch]
+  autosetuprebase = always
+[apply]
+  whitespace = nowarn
+[format]
+  # This changes git log and git l
+  pretty = format:%C(cyan)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[merge]
+  tool = kdiff3
+  summary = true
+  verbosity = 1
+[push]
+  # 'git push' will push the current branch to its tracking branch
+  # the usual default is to push all branches
+  default = tracking
+[gc]
+  auto = 1
+[advice]
+  statusHints = false
+[diff]
+  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+  # instead of a/b/c/d as prefixes for patches
+  #noprefix = true
+  mnemonicprefix = true

@@ -1,0 +1,70 @@
+!****************************************************
+!These are suggestions for a personal .Xdefaults file
+!****************************************************
+!*** some instructions on the use of X resources: ***
+! use xprop to find out the resource name :
+! look for a string in the line : WM_CLASS(STRING)
+! use this strong as the first word followed by a
+! "*" or a "." . The next word is the resource
+! followed by a ":" and after a SPACE or TAB comes
+! the value for that variable. These resources
+! override the system defaults given in the files
+! in /usr/lib/X11/app-defaults .
+!****************************************************
+
+XTerm*pointerColor: black
+XTerm*pointerColorBackground: red
+XTerm*scrollBar: true
+XTerm*scrollLines: 1000
+XTerm*saveLines: 1000
+XTerm*foreground: black
+XTerm*background: white
+XTerm*cursorColor: red3
+!XTerm*font: 10x20
+XTerm*font: 9x15
+
+!XEmacs.font: 10x20
+XEmacs.font: 9x15
+
+! How would you like your console window ?
+
+console*background:	black
+console*foreground:	white
+console*cursorColor:	white
+console*pointerColor:	slateblue4
+console*geometry:	50x5+5+5
+console*SaveLines:	300
+console*ScrollBar:	True
+console*Font:		8x13
+console*boldFont:	8x13bold
+console*loginShell:	True
+console*iconic:		True
+
+Emacs.font:		8x13
+Emacs.paneFont:		8x13bold
+Emacs.selectionFont:	8x13
+Emacs.background:	white
+Emacs.foreground:	black
+Emacs.geometry:		115x45+0+0
+Emacs.pointerColor:	slateblue4
+Emacs.cursorColor:	darkslateblue
+
+XBiff*geometry:		48x48
+XBiff*update:		1
+XBiff*volume:		100
+XBiff*background:	white
+XBiff*foreground:	black
+
+XClock*Geometry:	128x128
+XClock*background:	white
+XClock*foreground:	black
+XClock*hands:		gold1
+XClock*highlight:	gray20
+XClock*update:		1
+XClock*analog:		True
+XClock*font:		*helv*-r-normal-*-14-*
+
+!********************************************************
+!This is the font used for the menus etc. in ACEDB, image
+!********************************************************
+GraphPackage*font:		-*-helvetica-bold-r-normal-*-14-*
