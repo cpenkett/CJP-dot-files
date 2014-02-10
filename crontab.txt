@@ -1,0 +1,5 @@
+% crontab -l
+# min (m), hr (h), day of month (dom), month (mon), day of week (dow)
+# m h dom mon dow command
+00 20 * * 1-5 $HOME/bin/copy_bash_history.sh
+30 12,16,20 * * 1-5 $HOME/bin/rsync_home.sh myhost.org.type.uk
