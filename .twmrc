@@ -1,0 +1,148 @@
+NoMenuShadows
+BorderWidth 4
+Zoom 50
+NoGrabServer
+NoTitleFocus
+NoBackingStore
+NoTitle { "TWM Icon Manager" "WorkSpaceManager" "Occupy Window" "xclock" "ipaste" "memstat" }
+AutoRaise { "TWM Icon Manager" "WorkSpaceManager" }
+Cursors { menu "sb_right_arrow" }
+
+ShowIconManager
+SortIconManager
+IconifyByUnmapping
+IconRegion "100x600-0+110" North East 50 50
+IconManagerGeometry "120x20-0+120"
+
+IconManagerDontShow { "xclock" }
+
+TitleFont "-*-times-bold-r-*-*-17-*-*-*-*-*-*-*"
+IconManagerFont "-*-times-bold-r-*-*-14-*-*-*-*-*-*-*"
+MenuFont "-*-times-bold-r-*-*-14-*-*-*-*-*-*-*"
+IconFont "-*-times-bold-r-*-*-14-*-*-*-*-*-*-*"
+IconManagerFont "-*-times-bold-r-*-*-14-*-*-*-*-*-*-*"
+
+Color
+{
+TitleBackground "SteelBlue"
+TitleForeground "black"
+MenuBackground "SteelBlue"
+MenuForeground "black"
+MenuShadowColor "gray40"
+MenuTitleBackground "gray0"
+MenuTitleForeground "SteelBlue"
+IconManagerBackground "SteelBlue"
+IconManagerForeground "black"
+IconBorderColor "black"
+BorderColor "gray50"
+BorderTileBackground "SteelBlue"
+BorderTileForeground "gray0"
+}
+
+Monochrome
+{
+TitleForeground "black"
+TitleBackground "white"
+IconManagerBackground "white"
+IconManagerForeground "black"
+}
+
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+Button1 = : root : f.menu "Left"
+Button2 = : root : f.menu "TwmWindows"
+Button3 = : root : f.menu "Right"
+
+Button1 = : title | frame: f.function "move-or-raise"  
+Button2 = : title | frame: f.raiselower
+Button3 = : title | frame: f.menu "Left"
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+Button3 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+Button3 = : iconmgr : f.iconify
+
+menu "Left"
+{
+"Window ops" f.title
+"Iconify" f.iconify
+"Resize" f.resize
+"Move" f.move
+"Raise" f.raise
+"Lower" f.lower
+"Focus" f.focus
+"Unfocus" f.unfocus
+"Delete" f.delete
+"Kill" f.destroy
+}
+
+menu "Right" 
+{ 
+"Commands" f.title
+"xterm" !"xterm &"
+"Hosts" f.menu "Hosts"
+"Roots" f.menu "Roots"
+"Programs" f.menu "Programs"
+"Functions" f.menu "Functions"
+"Exit" f.menu "Exit"
+}
+
+menu "Hosts"
+{
+"babel" !"xhost +babel > /dev/null ; xterm -title 'babel' -e ssh babel &"
+"chewbacca" !"xhost +chewbacca > /dev/null ; xterm -title 'chewbacca' -e ssh chewbacca &"
+"darth" !"xhost +darth > /dev/null ; xterm -title 'darth' -e ssh darth &"
+"jedi" !"xhost +jedi > /dev/null ; xterm -title 'jedi' -e ssh jedi &"
+"windu" !"xhost +windu > /dev/null ; xterm -title 'windu' -e ssh windu &"
+"yoda" !"xhost +yoda > /dev/null ; xterm -title 'yoda' -e ssh yoda &"
+#"SGIs" f.menu "SGIs"
+}
+
+menu "SGIs"
+{
+"maul" !"xhost +maul > /dev/null ; xterm -title 'maul' -e rlogin maul &"
+}
+
+menu "Roots"
+{
+"Default" !"xsetroot -def"
+"Black" !"xsetroot -solid black"
+"Grey" !"xsetroot -solid grey50"
+"Cats" !"xv -root -rmode 1 -quit /nfs/team79/cjp/images/Cats.jpg &"
+#"Earth" !"xearth -pos fixed,52,0 &"
+}
+
+menu "Programs"
+{
+"xemacs" !"xemacs &"
+"mozilla" !"mozilla &"
+"netscape" !"netscape &"
+"acroread" !"acroread &"
+"ghostview" !"ghostview &"
+"xclock" !"xclock &"
+"xcalc" !"xcalc &"
+"xload" !"xload &"
+"xman" !"xman &"
+"xv" !"xv &"
+}
+
+menu "Functions"
+{
+"xhost +" !"xhost + > /dev/null"
+"xhost -" !"xhost - > /dev/null"
+#"Lock Screen" !"xlock -mode random +nolock -info 'Screen locked, enter password' -invalid 'Sorry\!' &"
+"Screen Saver" !"xscreensaver &"
+"Refresh" f.refresh
+"Restart" f.restart
+}
+
+menu "Exit"
+{
+"No thanks" f.nop
+"Yes really" f.quit
+}

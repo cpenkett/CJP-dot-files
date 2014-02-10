@@ -1,0 +1,236 @@
+# Comment out the the colour scheme that you don't like:
+
+# 1 Tasteful
+# 2 Tasteless
+
+# define(CS,1)
+define(CS,2)
+
+NoDefaults
+UseThreeDMenus
+UseThreeDTitles
+UseThreeDIconManagers
+SunkFocusWindowTitle
+NoMenuShadows
+DontPaintRootWindow
+RandomPlacement
+NoGrabServer
+NoTitleFocus
+NoBackingStore
+NoTitle { "TWM Icon Manager" "WorkSpaceManager" "Occupy Window" "xclock" "xload" "ipaste" "memstat" }
+AutoRaise { "TWM Icon Manager" "WorkSpaceManager" }
+Cursors { menu "sb_right_arrow" }
+
+ifelse(CS,2,
+InterpolateMenuColors
+BorderWidth 4,
+UseThreeDBorders
+ThreeDBorderWidth 6
+NoBorder { "WorkSpaceManager" "xclock" "TWM Icon Manager" })
+
+ShowWorkSpaceManager 
+OccupyAll { "xclock" "xload" }
+WorkSpaceManagerGeometry "40x210-0-0" 1
+ifelse(CS,2,
+WorkSpaces
+{
+"1" { "blue" "white" "black" "white" "gray3" }
+"2" { "tomato" "white" "black" "white" "gray3" }
+"3" { "orange" "white" "black" "white" "gray3" }
+"4" { "lightgoldenrod" "white" "black" "white" "gray3" }
+"5" { "chartreuse" "white" "black" "white" "gray3" }
+"6" { "midnightblue" "white" "black" "white" "gray3" }
+},
+WorkSpaces
+{
+"1" { "SteelBlue" "black" "black" "white" "gray3" }
+"2" { "SteelBlue" "black" "black" "white" "gray3" }
+"3" { "SteelBlue" "black" "black" "white" "gray3" }
+"4" { "SteelBlue" "black" "black" "white" "gray3" }
+"5" { "SteelBlue" "black" "black" "white" "gray3" }
+"6" { "SteelBlue" "black" "black" "white" "gray3" }
+})
+
+ShowIconManager
+SortIconManager
+IconifyByUnmapping
+IconRegion "100x600-0+110" North East 50 50
+IconManagerGeometry "120x20-0+120"
+
+IconManagerDontShow { "xclock" "xload" }
+
+define(timesf,"-*-times-bold-r-*-*-$1-*-*-*-*-*-*-*")
+TitleFont timesf(17)
+IconManagerFont timesf(14)
+MenuFont timesf(14)
+IconFont timesf(14)
+IconManagerFont timesf(14)
+
+ifelse(CS,2,
+Color
+{
+TitleBackground "salmon"
+TitleForeground "midnightblue"
+MenuBackground "purple"
+MenuForeground "yellow"
+MenuShadowColor "gray40"
+MenuTitleBackground "gray0"
+MenuTitleForeground "indianred"
+IconManagerBackground "pink"
+IconManagerForeground "black"
+IconBorderColor "purple"
+BorderColor "salmon"
+BorderTileBackground "purple"
+BorderTileForeground "gray0"
+},
+Color
+{
+TitleBackground "SteelBlue"
+TitleForeground "black"
+MenuBackground "SteelBlue"
+MenuForeground "black"
+MenuShadowColor "gray40"
+MenuTitleBackground "gray0"
+MenuTitleForeground "SteelBlue"
+IconManagerBackground "SteelBlue"
+IconManagerForeground "black"
+IconBorderColor "black"
+BorderColor "gray50"
+BorderTileBackground "SteelBlue"
+BorderTileForeground "gray0"
+})
+
+Monochrome
+{
+TitleForeground "black"
+TitleBackground "white"
+IconManagerForeground "white"
+IconManagerBackground "white"
+IconManagerForeground "black"
+}
+
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+Button1 = : root : f.menu "Left"
+Button2 = : root : f.menu "Middle"
+Button3 = : root : f.menu "Right"
+
+Button1 = : title | frame: f.function "move-or-raise"  
+Button2 = : title | frame: f.raiselower
+Button3 = : title | frame: f.menu "Left"
+
+LeftTitleButton ":xpm:bar" = f.menu "Left"
+RightTitleButton ":xpm:dot" = f.iconify
+RightTitleButton ":xpm:zoom" = f.fullzoom
+RightTitleButton ":xpm:resize" = f.resize
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+Button3 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+Button3 = : iconmgr : f.iconify
+
+"F1" = : root : f.gotoworkspace "1"
+"F2" = : root : f.gotoworkspace "2"
+"F3" = : root : f.gotoworkspace "3"
+"F4" = : root : f.gotoworkspace "4"
+"F5" = : root : f.gotoworkspace "5"
+"F6" = : root : f.gotoworkspace "6"
+
+menu "Left"
+{
+"Window ops" ifelse(CS,2,("cornflowerblue":"darkorange")) f.title
+"Iconify" f.iconify
+"Resize" f.resize
+"Move" f.move
+"Raise" f.raise
+"Lower" f.lower
+"Focus" f.focus
+"Unfocus" f.unfocus
+"Delete" f.delete
+"Kill" ifelse(CS,2,("blue":"orange")) f.destroy
+}
+
+menu "Middle"
+{
+"Workspace" f.title
+"Occupy" f.occupy
+"Next" f.nextworkspace
+"Previous" f.prevworkspace
+"Toggle Manager" f.togglestate
+}
+
+menu "Right" 
+{ 
+"Commands" f.title
+"xterm" !"xterm &"
+"Hosts" f.menu "Hosts"
+"Roots" f.menu "Roots"
+"Programs" f.menu "Programs"
+"Functions" f.menu "Functions"
+"Exit" f.menu "Exit"
+}
+
+menu "Hosts"
+{
+"ecs2" !"xhost +ecs2 > /dev/null ; xterm -title 'ecs2' -e slogin ecs2 &"
+"pcs3" !"xhost +pcs3 > /dev/null ; xterm -title 'pcs3' -e slogin pcs3 &"
+"babel" !"xhost +babel > /dev/null ; xterm -title 'babel' -e slogin babel &"
+"genespring" !"xhost +genespring > /dev/null ; xterm -title 'genespring' -e slogin genespring &"
+"chewbacca" !"xhost +chewbacca > /dev/null ; xterm -title 'chewbacca' -e slogin chewbacca &"
+"darth" !"xhost +darth > /dev/null ; xterm -title 'darth' -e slogin darth &"
+"jedi" !"xhost +jedi > /dev/null ; xterm -title 'jedi' -e slogin jedi &"
+"maul" !"xhost +maul > /dev/null ; xterm -title 'maul' -e slogin maul &"
+"windu" !"xhost +windu > /dev/null ; xterm -title 'windu' -e slogin windu &"
+"yoda" !"xhost +yoda > /dev/null ; xterm -title 'yoda' -e slogin yoda &"
+#"SGIs" f.menu "SGIs"
+}
+
+menu "SGIs"
+{
+"maul" !"xhost +maul > /dev/null ; xterm -title 'maul' -e rlogin maul &"
+}
+
+menu "Roots"
+{
+"Default" !"xsetroot -def"
+"Black" !"xsetroot -solid black"
+"Grey" !"xsetroot -solid grey50"
+"Cats" !"xv -root -rmode 1 -quit /nfs/team79/cjp/images/Cats.jpg &"
+#"Earth" !"xearth -pos fixed,52,0 &"
+}
+
+menu "Programs"
+{
+"xemacs" !"xemacs &"
+"mozilla" !"/nfs/pombearray/cjp/src/mozilla/mozilla &"
+"netscape" !"netscape &"
+"acroread" !"acroread &"
+"ghostview" !"ghostview &"
+"xclock" !"xclock &"
+"xcalc" !"xcalc &"
+"xload" !"xload &"
+"xman" !"xman &"
+"xv" !"xv &"
+}
+
+menu "Functions"
+{
+"xhost +" !"xhost + > /dev/null"
+"xhost -" !"xhost - > /dev/null"
+#"Lock Screen" !"xlock -mode random +nolock -info 'Screen locked, enter password' -invalid 'Sorry\!' &"
+"Screen Saver" !"xscreensaver &"
+"Refresh" f.refresh
+"Restart" f.restart
+}
+
+menu "Exit"
+{
+"No thanks" f.nop
+"" f.separator
+"Yes really" f.quit
+}
