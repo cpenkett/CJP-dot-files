@@ -59,29 +59,43 @@ alias parallel='parallel --gnu'
 alias gitdiff='GIT_EXTERNAL_DIFF="$HOME/bin/git_diff.sh" git diff'
 
 alias ga='git add -A'
+alias gap='git add --patch' # Potential UNIX command
 alias gb='git branch'
 alias gbv='git branch -v'
+alias gca='git commit -a'
 alias gcb='git checkout -b' # Potential UNIX command
 alias gch='git cherry-pick -x'
-alias gct='git checkout --track'
+alias gci='git commit'
 alias gco='git checkout' # Potential UNIX command
+alias gct='git checkout --track'
 alias gcv='git commit -v' # Potential UNIX command
 alias gd='git diff'
+alias gdc='git diff --cached' # Potential UNIX command
+alias gdh='git diff HEAD'
 alias gds='git diff --summary'
 alias gf='git fetch'
 alias gl='git log --graph --relative-date'
 alias glg='git log --date=local'
+alias gls='git log --pretty=medium'
+alias gnb='git checkout -b'
 alias gpl='git pull'
 alias gps='git push'
 alias gr='git remote'
+alias grv='git remote -v'
 alias grs='git remote show'
 alias grso='git remote show origin'
+alias gsa='git stash apply'
+alias gsb='git show-branch'
+alias gsc='git stash clear' # Potential UNIX command
+alias gsd='git stash drop'
 alias gsl='git stash list'
 alias gsp='git stash pop'
 alias gss='git stash' # Potential UNIX command
 alias gst='git status -s' # Potential UNIX command
-alias guc='reset --soft HEAD^' # git uncommit
-alias gus='reset HEAD' # git unstage
+alias gsta='git status' # Potential UNIX command
+alias gt='git tag -l'
+alias gucommit='reset --soft HEAD^'
+alias gustage='reset HEAD' # git unstage
 
 alias setvi='set -o vi'
 alias setem='set -o emacs'
@@ -102,7 +116,7 @@ alias pp="perl -ne 's/(.{1,70})\s/\$1\n/g; \$t .= \$_; END {print \$t}'" # Poten
 alias makefasta="perl -ne 's/(.{1,70})/\$1\n/g if not /^>/; \$t .= \$_; END {\$t =~ s/\n>/>/g; chomp \$t; print \$t}'"
 
 alias qu="qstat -u $USER"
-alias sq="squeue -u $USER" # Potential UNIX command
+alias sq="squeue -lu $USER" # Potential UNIX command
 
 alias sv='samtools view' # Potential UNIX command
 alias si='samtools index'

@@ -5,47 +5,63 @@
   a = add -A
   ap = add --patch
 
-  s = status -s
-  st = status
-
-  ca = commit -a
-  c = commit -v
-  ci = commit
+  b = branch
+  bv = branch -v
 
   co = checkout
+  cb = checkout -b
   nb = checkout -b
+  ct = checkout --track
 
-  ss = stash
-  sl = stash list
-  sa = stash apply
-  sd = stash drop
-  sc = stash clear
+  ci = commit
+  ca = commit -a
+  cv = commit -v
 
-  b = branch -v
-  br = branch
+  ch = cherry-pick -x
 
   d = diff
-  di = diff
   dh = diff HEAD
   dc= diff --cached
-  dis = diff --staged
+  ds= diff --summary
+
+  f = fetch
 
   l = log --graph --relative-date
   lg = log --date=local
-  nlog = log --pretty=medium
+  ls = log --pretty=medium
+
+  last = log -1 HEAD
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   changelog = log --pretty=format:\" * %s\"
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
 
-  r = remote -v
+  pl = pull
+  ps = push
+
+  r = remote
+  rv = remote -v
+  rs = remote show
+  rso = remote show origin
+  rso = remote show origin
+  sb = show-branch
+
+  ss = stash
+  sp = stash pop
+  sl = stash list
+  sa = stash apply
+  sd = stash drop
+  sc = stash clear
+
+  st = status -s
+  sta = status
+
   t = tag -l
 
+  us = reset HEAD
   unstage = reset HEAD
+  uc = reset --soft HEAD^
   uncommit = reset --soft HEAD^
-
-  last = log -1 HEAD
-  cp = cherry-pick -x
 [color]
   #branch = auto
   #diff = auto
