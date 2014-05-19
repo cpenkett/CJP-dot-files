@@ -4,6 +4,8 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
+[ -z "$PS1" ] && return
+
 # bash
 export PATH="$HOME/bin:$HOME/bin/`uname`:$HOME/src/play-1.2.2:$PATH"
 #export CDPATH=".:..:$HOME/project:$HOME/src:/home:/data:/software:/scratch/$USER"
