@@ -1,0 +1,49 @@
+Install Ubuntu (set the user as cjp64).
+Login as cjp64 in X.
+Install nfs-common: % sudo apt-get install nfs-common
+In /etc/group - check cjp64 is in sudo group.
+In /etc, add these lines to file fstab to add NFS file shares from the Isilon:
+193.60.85.235:/ifs/data /data nfs rsize=8192,wsize=8192,timeo=14,intr
+193.60.85.235:/ifs/usr /ihome nfs rsize=8192,wsize=8192,timeo=14,intr
+193.60.85.235:/ifs/scratch /scratch nfs rsize=8192,wsize=8192,timeo=14,intr
+193.60.85.235:/ifs/software /software nfs rsize=8192,wsize=8192,timeo=14,intr
+#193.60.85.235:/ifs/share /seqs nfs rsize=8192,wsize=8192,timeo=14,intr 
+#193.60.85.235:/ifs/easih /easih nfs rsize=8192,wsize=8192,timeo=14,intr
+
+Logout as cjp64 from X.
+
+Login as root in a console window:
+% cd /
+Set cjp64 user id to 1004; also set group info to 1000 and set cjp64 as group 1004 (may need to log out and log in again).
+Change owner/group of /home to reflect these changes.
+% cd /home; sudo chown -R cjp64:info cjp64
+
+% mkdir {ihome, data, software, scratch}
+Mount all NFS drives: % mountall
+Also can manually mount drives like this (need nfs-common):
+% sudo mount.nfs 193.60.85.235:/ifs/share /seqs -v
+
+Login as cjp64 in X.
+Install standard packages:
+% sudo apt-get install openssh-server smbfs sshfs ethtool chkconfig curl lynx ncftp firefox thunderbird chromium-browser gstreamer0.10-ffmpeg gimp xpdf gv a2ps tcsh zsh cdargs vim vim-gnome emacs xemacs21 perl-doc cython python-dev python-mode java-common default-jre openjdk-6-jdk ruby r-base-core ess rcs cvs subversion git-core mercurial quota virtualbox-ose apt-file gnome-shell gnome-screensaver
+
+More standard packages:
+% sudo apt-get install python-matplotlib python-wxgtk2.8 mysql-client-5.5 mysql-server-5.5 python-mysqldb graphviz libmysql-java python-reportlab cmake flex bison traceroute libqt4-dev python-pygresql python-psycopg2 postgresql-client-common postgresql-client-8.4 scala eclipse groovy workrave gparted ipython python-rdkit python-scipy mysql-workbench unetbootin gconf-editor mono-devel texlive-latex-base texlive-latex-extra python-openpyxl python-xlrd python-xlwt python-pip finger apache2-mpm-prefork parallel colordiff meld texlive screen htop lftp flashplugin-installer kdiff3 gcp pv libcurl4-gnutls-dev rubygems
+
+
+To add java 1.7
+% sudo add-apt-repository ppa:webupd8team/java
+% sudo apt-get update
+% sudo apt-get install oracle-java7-installer
+
+Things to make Ubuntu 12 look like 10:
+% sudo apt-add-repository ppa:atareao/atareao
+% sudo apt-get update
+% sudo apt-get install my-weather-indicator
+
+More:
+% sudo apt-get install compizconfig-settings-manager
+Applications -> System Tools -> Preferences -> CompizConfig Settings Manager => General -> General Options => Desktop Size -> Horizontal Virtual Size = 6, Vertical Virtual Size = 1 AND Focus & Raise Behaviour -> Click To Focus = unchecked, Auto-Raise = unchecked
+
+For printer:
+% sudo system-config-printer

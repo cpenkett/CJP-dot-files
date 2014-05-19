@@ -121,6 +121,7 @@ alias sq="squeue -lu $USER" # Potential UNIX command
 alias sv='samtools view' # Potential UNIX command
 alias si='samtools index'
 alias sf='samtools flagstat'
+alias sid='samtools idxstats'
 
 alias printq="perl -e 'foreach (0..40) { \$_%10 == 0 ? printf(qq/%d/, \$_/10) : print qq/ / } \
   print qq/\n/; print \$_%10 foreach 0..40; \
