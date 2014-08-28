@@ -1,0 +1,33 @@
+vbell_msg "bell: window ~%"
+vbellwait 2
+vbell off
+
+escape \035\\
+verbose on
+
+startup_message off
+
+bind \^ resize +1
+bind v resize -1
+bind P paste
+bind ^b windowlist -b
+bind ^a title
+
+bind  ) select 10
+bind  ! select 11
+bind  @ select 12
+bind \# select 13
+bind \$ select 14
+bind  % select 15
+bind \^ select 16
+bind  & select 17
+bind  * select 18
+bind  ( select 19
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+
+shelltitle ") |:"
+
+defscrollback 20000
