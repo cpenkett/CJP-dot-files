@@ -15,5 +15,6 @@ makedot
 ```bash
 git clone git@github.com:cpenkett/CJP-dot-files.git
 cd CJP-dot-files
-for f in .*; do if [[ "$f" == ".git" || "$f" == "." || "$f" == ".." ]]; then echo "  Not copying $f"; else \cp -vr $f ~; fi; done
+for f in .*; do if [[ "$f" == ".git" || "$f" == "." || "$f" == ".." ]]; then echo "  Not copying $f"; else /bin/cp -vr $f ~; fi; done
+#for f in .*; do echo "- $f -"; if [[ "$f" == ".bash_local"|| "$f" == ".git" || "$f" == ".xemacs" || "$f" == "." || "$f" == ".." ]]; then echo "  Not copying $f"; else sdiff -s $f ~ 2> /dev/null; fi; echo; done | grep -Ev "Not copying|Only" | m
 ```
