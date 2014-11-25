@@ -10,7 +10,7 @@ else
   alias plgrep='pcregrep'
 fi
 
-alias sudo='sudo ' # To allow my aliases to work with sudo
+#alias sudo='sudo ' # To allow my aliases to work with sudo
 
 #alias ld='ls -sh' # UNIX command
 alias lsd='ls -sh'
@@ -115,8 +115,8 @@ alias pitime='time echo "scale=5000; 4*a(1)" | bc -l -q'
 alias pp="perl -ne 's/(.{1,70})\s/\$1\n/g; \$t .= \$_; END {print \$t}'" # Potential UNIX command
 alias makefasta="perl -ne 's/(.{1,70})/\$1\n/g if not /^>/; \$t .= \$_; END {\$t =~ s/\n>/>/g; chomp \$t; print \$t}'"
 
-alias qu="qstat -u $USER"
-alias sq="squeue -lu $USER" # Potential UNIX command
+#alias qu="qstat -u $USER"
+#alias sq="squeue -lu $USER" # Potential UNIX command
 
 alias sv='samtools view' # Potential UNIX command
 alias si='samtools index'

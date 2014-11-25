@@ -2,6 +2,10 @@
 #umask 022
 umask 002
 
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
 [ -z "$PS1" ] && return
 
 set -C
