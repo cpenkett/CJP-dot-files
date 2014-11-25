@@ -5,7 +5,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # bash
-export PATH="$HOME/bin:$HOME/bin/$(uname):$HOME/src/play-1.2.2:$PATH"
+export PATH="$HOME/bin:$HOME/bin/$(uname):$PATH"
 #export CDPATH=".:..:$HOME/projects:$HOME/src:$HOME/git"
 
 # perl
@@ -19,3 +19,7 @@ export PATH="$HOME/bin:$HOME/bin/$(uname):$HOME/src/play-1.2.2:$PATH"
 
 # C/C++
 #export LD_LIBRARY_PATH="$HOME/lib/c:$LD_LIBRARY_PATH"
+
+if [ -f "$HOME/.bash_profile_local" ]; then
+  . "$HOME/.bash_profile_local"
+fi

@@ -5,7 +5,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # bash
-export PATH="$HOME/bin:$HOME/bin/$(uname):$HOME/src/play-1.2.2:$PATH"
+export PATH="$HOME/bin:$HOME/bin/$(uname):$PATH"
 #export CDPATH=".:..:$HOME/projects:$HOME/src:$HOME/git"
 
 # perl
