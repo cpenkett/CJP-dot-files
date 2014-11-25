@@ -1,3 +1,10 @@
+$include /etc/inputrc
+
+$if Python
+  "\M-i": "  "
+  "\M-u": "\d\d"
+$endif
+
 #set editing-mode vi
 #set keymap vi
 
@@ -41,6 +48,8 @@ $endif
 # home and page-down keys
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
+"\M-p": history-search-backward
+"\M-n": history-search-forward
 #"\e[5~": beginning-of-history
 #"\e[6~": end-of-history
 

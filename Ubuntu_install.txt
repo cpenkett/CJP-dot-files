@@ -25,10 +25,10 @@ Also can manually mount drives like this (need nfs-common):
 
 Login as cjp64 in X.
 Install standard packages:
-% sudo apt-get install openssh-server smbfs sshfs ethtool chkconfig curl lynx ncftp firefox thunderbird chromium-browser gstreamer0.10-ffmpeg gimp xpdf gv a2ps tcsh zsh cdargs vim vim-gnome emacs xemacs21 perl-doc cython python-dev python-mode java-common default-jre openjdk-6-jdk ruby r-base-core ess rcs cvs subversion git-core mercurial quota virtualbox-ose apt-file gnome-shell gnome-screensaver
+% sudo apt-get install openssh-server smbfs sshfs ethtool chkconfig curl lynx ncftp firefox thunderbird chromium-browser gstreamer0.10-ffmpeg gimp xpdf gv a2ps tcsh zsh cdargs vim vim-gnome emacs xemacs21 perl-doc cython python-dev python-mode java-common default-jre openjdk-6-jdk ruby tcl-dev r-base-core ess rcs cvs subversion git-core mercurial quota virtualbox-ose apt-file gnome-shell gnome-screensaver
 
 More standard packages:
-% sudo apt-get install python-matplotlib python-wxgtk2.8 mysql-client-5.5 mysql-server-5.5 python-mysqldb graphviz libmysql-java python-reportlab cmake flex bison traceroute libqt4-dev python-pygresql python-psycopg2 postgresql-client-common postgresql-client-8.4 scala eclipse groovy workrave gparted ipython python-rdkit python-scipy mysql-workbench unetbootin gconf-editor mono-devel texlive-latex-base texlive-latex-extra python-openpyxl python-xlrd python-xlwt python-pip finger apache2-mpm-prefork parallel colordiff meld texlive screen htop lftp flashplugin-installer kdiff3 gcp pv libcurl4-gnutls-dev rubygems
+% sudo apt-get install python-matplotlib python-wxgtk2.8 mysql-client-5.5 mysql-server-5.5 python-mysqldb graphviz libmysql-java python-reportlab cmake flex bison traceroute libqt4-dev python-pygresql python-psycopg2 postgresql-client-common postgresql-client-8.4 scala eclipse groovy workrave gparted ipython python-rdkit python-rpy2 python-scipy mysql-workbench unetbootin gconf-editor mono-devel texlive-latex-base texlive-latex-extra python-openpyxl python-xlrd python-xlwt python-pip finger apache2-mpm-prefork parallel colordiff meld texlive screen htop lftp flashplugin-installer kdiff3 gcp pv libcurl4-gnutls-dev rubygems imagemagick python-virtualenv libxmu-dev 
 
 
 To add java 1.7

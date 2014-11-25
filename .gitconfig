@@ -80,7 +80,7 @@
 [core]
   #autocrlf = false
   editor = vim
-  #excludesfile = $HOME/.gitignore
+  excludesfile = /home/cjp64/.gitignore
 [branch]
   autosetuprebase = always
 [apply]

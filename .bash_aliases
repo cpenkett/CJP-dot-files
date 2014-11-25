@@ -106,7 +106,7 @@ alias us='setxkbmap us'
 alias nocaps="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 
 alias ver='uname -a && cat /etc/*release'
-alias makedot='rm -f Xstuff.tgz && tar cvfz Xstuff.tgz .bash_aliases .bash_completion .bash_functions .bash_local .bash_logout .bash_profile .bashrc .cshrc .emacs .gitconfig .gitignore .git-completion.sh .git-prompt.sh .inputrc .pythonrc .profile .Rprofile* .toprc .vim .vimrc .Xdefaults .xemacs'
+alias makedot='rm -f Xstuff.tgz && tar cvfz Xstuff.tgz .bash_aliases .bash_completion .bash_functions .bash_local .bash_logout .bash_profile .bashrc .cshrc .emacs .gitconfig .gitignore .git-completion.sh .git-prompt.sh .inputrc .pythonrc .profile .Rprofile* .screenrc .toprc .vim .vimrc .Xdefaults .xemacs'
 
 alias decol='sed -r "s:\x1B\[[0-9;]*[mK]::g"'
 alias lsweb='python -m SimpleHTTPServer'
@@ -164,6 +164,9 @@ alias sumsq="awk '{s2+=(\$1*\$1)} END {print s2}'"
 alias musd="awk '{s+=\$1;s2+=(\$1*\$1)} END {print s/NR,sqrt((NR*s2-s*s)/(NR*(NR-1)))}'"
 alias min="awk 'BEGIN {min=1.0e20} {if (\$1<min) min=\$1} END {print min}'"
 alias max="awk 'BEGIN {max=-1.0e20} {if (\$1>max) max=\$1} END {print max}'"
+alias summary="awk 'BEGIN {min=1.0e20; max=-1.0e20} {if (\$1<min) min=\$1; if (\$1>max) max=\$1; s+=\$1; s2+=(\$1*\$1)} END {print NR,s/NR,sqrt((NR*s2-s*s)/(NR*(NR-1))),min,max,s,s2}'"
+
+alias md5check='for f in *.md5; do diff=$(diff <(one $f) <(md5sum ${f%.md5} | one) ); if [[ $(echo -n $diff | wc -c) -gt 0 ]]; then echo "${f%.md5} has wrong MD5"; else echo "${f%.md5} OK"; fi; done'
 
 alias white="echo -ne '\033]12;white\007'"
 alias grey="echo -ne '\033]12;grey\007'"

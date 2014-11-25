@@ -3,7 +3,7 @@ vbellwait 2
 vbell off
 
 escape \035\\
-verbose on
+#verbose on
 
 startup_message off
 
