@@ -3,12 +3,6 @@ Login as cjp64 in X.
 Install nfs-common: % sudo apt-get install nfs-common
 In /etc/group - check cjp64 is in sudo group.
 In /etc, add these lines to file fstab to add NFS file shares from the Isilon:
-193.60.85.235:/ifs/data /data nfs rsize=8192,wsize=8192,timeo=14,intr
-193.60.85.235:/ifs/usr /ihome nfs rsize=8192,wsize=8192,timeo=14,intr
-193.60.85.235:/ifs/scratch /scratch nfs rsize=8192,wsize=8192,timeo=14,intr
-193.60.85.235:/ifs/software /software nfs rsize=8192,wsize=8192,timeo=14,intr
-#193.60.85.235:/ifs/share /seqs nfs rsize=8192,wsize=8192,timeo=14,intr 
-#193.60.85.235:/ifs/easih /easih nfs rsize=8192,wsize=8192,timeo=14,intr
 
 Logout as cjp64 from X.
 
