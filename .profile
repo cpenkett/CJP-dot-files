@@ -19,3 +19,7 @@ export PATH="$HOME/bin:$HOME/bin/$(uname):$PATH"
 
 # C/C++
 #export LD_LIBRARY_PATH="$HOME/lib/c:$LD_LIBRARY_PATH"
+
+if [ -f "$HOME/.profile_local" ]; then
+  . "$HOME/.profile_local"
+fi
