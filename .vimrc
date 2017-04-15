@@ -19,7 +19,7 @@ if version >= 700
 
   if has('autocmd')
 
-    autocmd VimLeave * !echo -ne "\033]12;grey\007"
+    autocmd VimLeave * !echo -ne "\033]12;red\007"; clear
 
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd BufReadPost *.doc %!antiword '%'

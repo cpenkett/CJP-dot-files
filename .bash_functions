@@ -10,7 +10,7 @@ pg() { # UNIX command
 
   local proc=$1
 
-  ps -ef | \egrep --color=always "^UID|$proc" | \grep --color=never -v grep
+  ps -ef | /bin/grep -E --color=always "^UID|$proc" | /bin/grep "$USER" | /bin/grep -Ev "grep|root"
 
 }
 
@@ -30,7 +30,7 @@ pgr() {
   ps aux | head -1
 
   while true; do
-    ps aux | \egrep --color=always "$proc" | \grep --color=never -v grep
+    ps aux | /bin/grep -E --color=always "$proc" | /bin/grep "$USER" | /bin/grep -Ev "grep|root"
     if [[ ${PIPESTATUS[1]} -eq 1 || ${PIPESTATUS[2]} -eq 1 ]]; then
       break
     fi
@@ -47,7 +47,7 @@ kg() {
 
   local proc=$1
 
-  ps -ef | \grep --color=never "$proc" | \grep --color=never -v grep | awk '{print $2}' | xargs kill
+  ps -ef | /bin/grep -E "$proc" | /bin/grep "$USER" | /bin/grep -Ev "grep|root" | awk '{print $2}' | xargs -r kill
 
 }
 
@@ -67,14 +67,14 @@ kgr() {
   ps aux | head -1
 
   while true; do
-    ps aux | \egrep --color=always "$proc" | \grep --color=never -v grep
+    ps aux | /bin/grep -E --color=always "$proc" | /bin/grep "$USER" | /bin/grep -Ev "grep|root"
     if [[ ${PIPESTATUS[1]} -eq 1 || ${PIPESTATUS[2]} -eq 1 ]]; then
       break
     fi
-    mem=$(ps aux | \egrep --color=always "$proc" | \grep --color=never -v grep | awk '{print $4}')
+    mem=$(ps aux | /bin/grep -E --color=always "$proc" | /bin/grep -Ev "grep|root" | awk '{print $4}')
     if [[ $mem > 95 ]]; then
       echo "Memory too high: [$mem%] > 95 - killing $proc"
-      ps aux | \grep --color=never "$proc" | \grep --color=never -v grep | awk '{print $2}' | xargs kill
+      ps aux | /bin/grep "$proc" | /bin/grep "$USER" | /bin/grep -v "grep|root" | awk '{print $2}' | xargs -r kill
     fi
     sleep $time
   done
@@ -82,6 +82,11 @@ kgr() {
 }
 
 cd_func () {
+
+  if [ $# -eq 0 ]; then
+    cd_func $HOME
+    return 0
+  fi
 
   local x2 the_new_dir adir index
   local -i cnt
@@ -93,9 +98,9 @@ cd_func () {
 
   the_new_dir=$1
   [[ -z $1 ]] && the_new_dir=$HOME
+  [[ -f $1 && ! -d $1 ]] && the_new_dir=$(dirname $1)
 
   if [[ ${the_new_dir:0:1} == '-' ]]; then
-    #
     # Extract dir N from dirs
     index=${the_new_dir:1}
     [[ -z $index ]] && index=1
@@ -104,21 +109,17 @@ cd_func () {
     the_new_dir=$adir
   fi
 
-  #
   # '~' has to be substituted by ${HOME}
   [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
 
-  #
   # Now change to the new dir and add to the top of the stack
   pushd "${the_new_dir}" > /dev/null
   [[ $? -ne 0 ]] && return 1
   the_new_dir=$(pwd)
 
-  #
   # Trim down everything beyond 11th entry
   popd -n +11 2>/dev/null 1>/dev/null
 
-  #
   # Remove any other occurence of this dir, skipping the top of the stack
   for ((cnt=1; cnt <= 10; cnt++)); do
     x2=$(dirs +${cnt} 2>/dev/null)
@@ -317,9 +318,21 @@ svc() { # Potential UNIX command
   if [ $# -gt 1 ]; then
     samtools view -hX $bam | perl -F\\t -ane 'print, next if /^@/; @bases = split "", $F[9]; @quals = split "", $F[10]; $seq = ""; foreach $b (@bases) { $col = "\e[0;37m"; if ($b eq "A") {$col = "\e[0;32m"} elsif ($b eq "C") {$col = "\e[0;34m"} elsif ($b eq "G") {$col = "\e[0;35m"} elsif ($b eq "T") {$col = "\e[0;33m"} else {$col = "\e[0;31m"} $seq .= "$col$b\e[0m" } $qual = ""; foreach $q (@quals) { $score = ord($q)-33; $col = "\e[0m"; if ($score < 15) {$col = "\e[0;31m"} elsif ($score < 30) {$col = "\e[0;33m"} else {$col = "\e[0;32m"} $qual .= "$col$q\e[0m" } $F[9] = $seq; $F[10] = $qual; print join "\t", @F[0..10], "\n"' | $PAGER
   else
-    #samtools view -hX $bam | perl -F\\t -ane 'print, next if /^@/; @bases = split "", $F[9]; @quals = split "", $F[10]; $seq = ""; $qual = ""; $i = 0; foreach $q (@quals) { $b = $bases[$i]; $i++; $score = ord($q)-33; $col = "\e[0m"; if ($score < 15) {$col = "\e[0;31m"} elsif ($score < 30) {$col = "\e[0;33m"} else {$col = "\e[0;32m"} $seq .= "$col$b\e[0m"; $qual .= "$col$q\e[0m" } $F[9] = $seq; $F[10] = $qual; print join "\t", @F' | $PAGER
+    samtools view -hX $bam | perl -F\\t -ane 'print, next if /^@/; @bases = split "", $F[9]; @quals = split "", $F[10]; $seq = ""; $qual = ""; $i = 0; foreach $q (@quals) { $b = $bases[$i]; $i++; $score = ord($q)-33; $col = "\e[0m"; if ($score < 15) {$col = "\e[0;31m"} elsif ($score < 30) {$col = "\e[0;33m"} else {$col = "\e[0;32m"} $seq .= "$col$b\e[0m"; $qual .= "$col$q\e[0m" } $F[9] = $seq; $F[10] = $qual; print join "\t", @F' | $PAGER
     samtools view -hX $bam | perl -F\\t -ane 'print, next if /^@/; @bases = split "", $F[9]; @quals = split "", $F[10]; $seq = ""; $i = 0; foreach $q (@quals) { $b = $bases[$i]; $i++; $score = ord($q)-33; $col = "\e[0m"; if ($score < 15) {$col = "\e[0;31m"} elsif ($score < 30) {$col = "\e[0;33m"} else {$col = "\e[0;32m"} $seq .= "$col$b\e[0m" } $F[9] = $seq; print join "\t", @F[0..9], "\n"' | $PAGER
   fi
+
+}
+
+bvx() {
+
+  if [ $# -eq 0 ]; then
+    return
+  fi
+  
+  local vcf=$1
+  
+  bcftools view -GH $vcf | $PAGER
 
 }
 

@@ -26,8 +26,10 @@ bind  ( select 19
 
 hardstatus on
 hardstatus alwayslastline
-hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
+#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %l %{..Y} %d-%M %C%a "
+hardstatus string '%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{G}%H %{W}%l%{g}][%{B} %d-%M %{W}%C%a %{g}]'
 
-shelltitle ") |:"
+#shelltitle ") |:"
+shelltitle ") |"
 
 defscrollback 20000

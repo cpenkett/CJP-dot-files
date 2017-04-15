@@ -1,3 +1,5 @@
+[init]
+  templatedir = /home/cbrcmod/scratch/modules/out/modulebin/git/2.1.3/git/build/share/git-core/templates
 [user]
   name = Chris Penkett
   email = cjp64@cam.ac.uk
@@ -21,8 +23,8 @@
 
   d = diff
   dh = diff HEAD
-  dc= diff --cached
-  ds= diff --summary
+  dc = diff --cached
+  ds = diff --summary
 
   f = fetch
 
