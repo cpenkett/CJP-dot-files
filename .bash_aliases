@@ -14,11 +14,11 @@ fi
 
 #alias ld='ls -sh' # UNIX command
 alias lsd='ls -sh'
-alias la='ls -alh'
 alias ll='ls -lh'
-alias lr='l -R'
-alias lv='l -v'
-alias lt='l -rt'
+alias la='ll -a'
+alias lr='la -R'
+alias lv='la -v'
+alias lt='la -rt'
 
 # TODO: i n o v #w x y z
 alias a='alias'
@@ -66,7 +66,11 @@ alias setvi='set -o vi'
 
 alias uk='setxkbmap gb'
 alias us='setxkbmap us'
-alias nocaps="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
+# Current layout: 'xmodmap -pke'
+#alias nocaps="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
+alias nocaps="xmodmap -e 'clear Lock' -e 'keycode 0x42 = asterisk'"
+alias swapcaps="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_L' -e 'keycode 0x25 = Caps_Lock'"
+alias resetcaps="xmodmap -e 'keycode 0x42 = Caps_Lock' -e 'keycode 0x25 = Control_L'"
 alias decol='sed -r "s:\x1B\[[0-9;]*[mK]::g"'
 
 alias st='export TERM=vt100'
