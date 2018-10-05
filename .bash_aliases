@@ -17,10 +17,13 @@ alias lsd='ls -sh'
 alias la='ls -alh'
 alias ll='ls -lh'
 alias lr='l -R'
+alias lv='l -v'
 alias lt='l -rt'
 
+# TODO: i n o v #w x y z
 alias a='alias'
 alias b='bc -ql'
+alias c="column -t"
 alias d='declare -a'
 alias e='export -f'
 alias f='finger'
@@ -28,9 +31,11 @@ alias g='git'
 alias h='history'
 alias j='jobs -l'
 alias k='kill'
-alias m="$PAGER"
 alias l='la'
+alias m="$PAGER"
 alias p='ps -ef'
+alias q='quota -v'
+alias r='readlink -f'
 alias s='source'
 alias t='tail -f'
 alias u='unalias'
@@ -41,6 +46,9 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias rmi='rm -I'
 alias ms='$PAGER -S'
+alias msf='$PAGER -SF'
+alias cs="column -t | ms"
+alias cst="column -t -s $'\t' | ms"
 
 alias pa='ps aux'
 alias pl='ps -eflyPjH'
@@ -156,6 +164,8 @@ alias gsta='git status' # Potential UNIX command
 alias gt='git tag -l'
 alias gucommit='reset --soft HEAD^'
 alias gustage='reset HEAD' # git unstage
+
+alias modver="perl -e\"eval qq{use \\\$ARGV[0];\\\\\\\$v=\\\\\\\$\\\${ARGV[0]}::VERSION;};\ print\\\$@?qq{No module found\\n}:\\\$v?qq{Version \\\$v\\n}:qq{Found.\\n};\"\$1"
 
 alias sv='samtools view' # Potential UNIX command
 alias si='samtools index'

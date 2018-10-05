@@ -16,5 +16,5 @@ makedot
 git clone git@github.com:cpenkett/CJP-dot-files.git
 cd CJP-dot-files
 for f in .*; do if [[ "$f" == ".git" || "$f" == "." || "$f" == ".." ]]; then echo "  Not copying $f"; else /bin/cp -vr $f ~; fi; done
-for f in .*; do echo "- $f -"; if [[ "$f" == ".bash_local" || "$f" == ".git" || "$f" == ".xemacs" || "$f" == "." || "$f" == ".." ]]; then echo "  Not copying $f"; else sdiff -s $f ~ 2> /dev/null; fi; echo; done | /bin/grep -Ev "Not copying|Only" | less -R
+for f in .*; do echo "- $f -"; if [[ "$f" == ".bash_local" || "$f" == ".git" || "$f" == ".xemacs" || "$f" == "." || "$f" == ".." ]]; then echo "  Not checking $f"; else sdiff -s $f ~ 2> /dev/null; fi; echo; done | /bin/grep -Ev "Not copying|Only" | less -R
 ```

@@ -1,5 +1,9 @@
 $include /etc/inputrc
 
+# \C - Control
+# \M - Meta
+# \e - Escape
+
 $if Python
   "\M-i": "  "
   "\M-u": "\d\d"
@@ -10,99 +14,106 @@ $endif
 
 #$if mode=vi
 
-#"\C-a": beginning-of-line
-#"\C-e": end-of-line
+  #"\C-a": beginning-of-line
+  #"\C-e": end-of-line
 
 #$endif
 
 $if mode=emacs
 
-#set bell-style visible
-set expand-tilde on
-set meta-flag on
-set convert-meta on
-set input-meta on
-set output-meta on
-set visible-stats on
+  set bell-style visible
+  set expand-tilde on
+  set meta-flag on
+  set convert-meta on
+  set input-meta on
+  set output-meta on
+  set visible-stats on
 
-set completion-ignore-case on
-set mark-directories on
-set show-all-if-ambiguous on
-set show-all-if-unmodified on
-set completion-query-items 500
-set horizontal-scroll-mode off
-set mark-symlinked-directories on
-set page-completions off
+  set skip-completed-text on
 
-# magic-space for bash, eg "!ls "
-$if Bash
-  Space: magic-space
-$endif
+  set completion-ignore-case on
+  set mark-directories on
+  set show-all-if-ambiguous on
+  set show-all-if-unmodified on
+  set completion-query-items 200
+  set horizontal-scroll-mode off
+  set mark-symlinked-directories on
+  set page-completions off
+  set match-hidden-files off
 
-"\C-g": menu-complete
-#"\C-g": possible-completions
-#"\e/": dabbrev-expand
+  # magic-space for bash, eg "!ls "
+  $if Bash
+    Space: magic-space
+  $endif
 
-"\eg": history-expand-line
+  "\C-g": menu-complete
+  #"\C-g": possible-completions
+  #"\e/": dabbrev-expand
 
-# home and page-down keys
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
-"\M-p": history-search-backward
-"\M-n": history-search-forward
-#"\e[5~": beginning-of-history
-#"\e[6~": end-of-history
+  "\eg": history-expand-line
 
-"\e[5C": forward-word
-"\e[5D": backward-word
-"\e\e[C": forward-word
-"\e\e[D": backward-word
+  # home and page-down keys
+  "\e[5~": history-search-backward
+  "\e[6~": history-search-forward
+  #"\e[A": history-search-backward
+  #"\e[B": history-search-forward
+  "\M-p": history-search-backward
+  "\M-n": history-search-forward
+  #"\e[5~": beginning-of-history
+  #"\e[6~": end-of-history
 
-# <- and ->
-#"\e[D": backward-word
-#"\e[C": forward-word
+  "\e[5C": forward-word
+  "\e[5D": backward-word
+  "\e\e[C": forward-word
+  "\e\e[D": backward-word
 
-# shift <- and shift ->
-"\e[1;2D": backward-word
-"\e[1;2C": forward-word
+  # <- and ->
+  #"\e[D": backward-word
+  #"\e[C": forward-word
 
-# alt <- and alt ->
-"\e[1;3D": backward-word
-"\e[1;3C": forward-word
+  # shift <- and shift ->
+  "\e[1;2D": backward-word
+  "\e[1;2C": forward-word
 
-# ctrl <- and ctrl ->
-"\e[1;5D": vi-bword
-"\e[1;5C": vi-fword
+  # alt <- and alt ->
+  "\e[1;3D": backward-word
+  "\e[1;3C": forward-word
 
-# alternative mappings for some keys
-#"\e[1;3D": vi-prev-word
-#"\e[1;3C": vi-next-word
+  # ctrl <- and ctrl ->
+  "\e[1;5D": vi-bword
+  "\e[1;5C": vi-fword
 
-#"\e[1;5D": shell-backward-word
-#"\e[1;5C": shell-forward-word
+  # alternative mappings for some keys
+  #"\e[1;3D": vi-prev-word
+  #"\e[1;3C": vi-next-word
 
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
+  #"\e[1;5D": shell-backward-word
+  #"\e[1;5C": shell-forward-word
 
-"\e[3~": delete-char
-"\e[2~": quoted-insert
+  "\e[1~": beginning-of-line
+  "\e[4~": end-of-line
 
-# ctrl up and ctrl down
-#"^[[1;5A": copy-region-as-kill
-#"^[[1;5B": kill-region
+  "\e[3~": delete-char
+  "\e[2~": quoted-insert
 
-#"\ew": copy-region-as-kill
-#"\C-w": kill-region
-#"\ew": shell-backward-kill-word
+  # ctrl up and ctrl down
+  #"^[[1;5A": copy-region-as-kill
+  #"^[[1;5B": kill-region
 
-"\eE": vi-eword
-"\eW": vi-fword
-"\eF": vi-fword
-"\eB": vi-bword
-"\ee": vi-end-word
-#"\ew": vi-next-word
-"\ef": vi-next-word
-"\eb": vi-prev-word
-#"\ed": vi-delete
+  #"\ew": copy-region-as-kill
+  #"\C-w": kill-region
+  #"\ew": shell-backward-kill-word
+
+  "\eE": vi-eword
+  "\eW": vi-fword
+  "\eF": vi-fword
+  "\eB": vi-bword
+  "\ee": vi-end-word
+  #"\ew": vi-next-word
+  "\ef": vi-next-word
+  "\eb": vi-prev-word
+  #"\ed": vi-delete
+
+  #"\e[3;3~": kill-word
 
 $endif
