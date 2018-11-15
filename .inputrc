@@ -1,119 +1,276 @@
 $include /etc/inputrc
 
 # \C - Control
-# \M - Meta
-# \e - Escape
+# \M - Meta (alt/esc)
+# \e - Escape (also written as ^[)
 
-$if Python
-  "\M-i": "  "
-  "\M-u": "\d\d"
-$endif
+# General help for bind command and .inputrc file: https://www.computerhope.com/unix/bash/bind.htm
+# Help for command names: https://www.gnu.org/software/bash/manual/html_node/Bindable-Readline-Commands.html
 
-#set editing-mode vi
-#set keymap vi
+# Use "bind -p" to see current key bindings
+# Use "stty -a" to see system key bindings
+# Use ctrl-v and then the key combination to see its bind value
 
-#$if mode=vi
-
-  #"\C-a": beginning-of-line
-  #"\C-e": end-of-line
-
-#$endif
+# Values from my keyboard for function and cursor/move keys
+#            -        shift      alt        ctrl
+#insert      \e[2~    paste      \e[2;3~    empty
+#delete:     \e[3~    \e[3;2~    \e[3;3~    \e[3;5~
+#home:       \e[H     top        \e[1;3H    \e[1;5H
+#end:        \e[F     bottom     \e[1;3F    \e[1;5F
+#pageup:     \e[5~    up         \e[5;3~    \e[5;5~
+#pagedown:   \e[6~    down       \e[6;3~    \e[6;5~
+#uparr:      \e[A     \e[1;2A    \e[1;3A    \e[1;5A
+#downarr:    \e[B     \e[1;2B    \e[1;3B    \e[1;5B
+#rightarr:   \e[C     \e[1;2C    \e[1;3C    \e[1;5C
+#leftarr:    \e[D     \e[1;2D    \e[1;3D    \e[1;5D
+#F1:         empty    \e[1;2P    launch     \e[1;5P
+#F2:         \eOQ     \e[1;2Q    launch     \e[1;5Q
+#F3:         \eOR     \e[1;2R    \e[1;3R    \e[1;5R
+#F4:         \eOS     \e[1;2S    \e[1;3S    \e[1;5S
+#F5:         \e[15~   \e[15;2~   \e[15;3~   \e[15;5~
+#F6:         \e[17~   \e[17;2~   \e[17;3~   \e[17;5~
+#F7:         \e[18~   \e[18;2~   move       \e[18;5~
+#F8:         \e[19~   \e[19;2~   resize     \e[19;5~
+#F9:         \e[20~   \e[20;2~   \e[20;3~   \e[20;5~
+#F10:        \e[21~   menu       menu2      \e[21;5~
+#F11:        empty    \e[23;2~   \e[23;3~   \e[23;5~
+#F12:        \e[24~   \e[24;2~   \e[24;3~   \e[24;5~
 
 $if mode=emacs
 
   set bell-style visible
-  set expand-tilde on
-  set meta-flag on
-  set convert-meta on
-  set input-meta on
-  set output-meta on
-  set visible-stats on
-
-  set skip-completed-text on
-
+  set blink-matching-paren on
+  set colored-completion-prefix on
+  set colored-stats on
   set completion-ignore-case on
+  set completion-query-items 200
+  set convert-meta on
+  #set expand-tilde on
+  set horizontal-scroll-mode off
+  set input-meta on
   set mark-directories on
+  set mark-symlinked-directories on
+  set match-hidden-files off
+  set meta-flag on
+  set output-meta on
+  set page-completions off
   set show-all-if-ambiguous on
   set show-all-if-unmodified on
-  set completion-query-items 200
-  set horizontal-scroll-mode off
-  set mark-symlinked-directories on
-  set page-completions off
-  set match-hidden-files off
+  set show-mode-in-prompt off
+  set skip-completed-text on
+  set visible-stats on
 
   # magic-space for bash, eg "!ls "
   $if Bash
     Space: magic-space
   $endif
 
-  "\C-g": menu-complete
-  #"\C-g": possible-completions
-  #"\e/": dabbrev-expand
+  # Start with main mappings for movement keys
 
-  "\eg": history-expand-line
+  # Default mappings for del, cursors, home and end
+  "\e[3~": delete-char
+  "\e[A": previous-history
+  "\e[B": next-history
+  "\e[C": forward-char
+  "\e[D": backward-char
+  "\e[F": end-of-line
+  "\e[H": beginning-of-line
 
-  # home and page-down keys
+  # Unsure what these keys are?
+  "\eOA": previous-history
+  "\eOB": next-history
+  "\eOC": forward-char
+  "\eOD": backward-char
+  "\eOF": end-of-line
+  "\eOH": beginning-of-line
+
+  # page-up and page-down keys
   "\e[5~": history-search-backward
   "\e[6~": history-search-forward
-  #"\e[A": history-search-backward
-  #"\e[B": history-search-forward
-  "\M-p": history-search-backward
-  "\M-n": history-search-forward
-  #"\e[5~": beginning-of-history
-  #"\e[6~": end-of-history
 
-  "\e[5C": forward-word
-  "\e[5D": backward-word
-  "\e\e[C": forward-word
-  "\e\e[D": backward-word
-
-  # <- and ->
-  #"\e[D": backward-word
-  #"\e[C": forward-word
-
-  # shift <- and shift ->
-  "\e[1;2D": backward-word
-  "\e[1;2C": forward-word
-
-  # alt <- and alt ->
-  "\e[1;3D": backward-word
-  "\e[1;3C": forward-word
-
-  # ctrl <- and ctrl ->
-  "\e[1;5D": vi-bword
-  "\e[1;5C": vi-fword
-
-  # alternative mappings for some keys
-  #"\e[1;3D": vi-prev-word
-  #"\e[1;3C": vi-next-word
-
-  #"\e[1;5D": shell-backward-word
-  #"\e[1;5C": shell-forward-word
-
+  # for linux console (home and end)
   "\e[1~": beginning-of-line
   "\e[4~": end-of-line
 
-  "\e[3~": delete-char
+  # insert and delete
   "\e[2~": quoted-insert
+  #"\e[3~": delete-char
 
-  # ctrl up and ctrl down
-  #"^[[1;5A": copy-region-as-kill
-  #"^[[1;5B": kill-region
+  # up and down keys
+  #"\e[A": history-search-backward
+  #"\e[B": history-search-forward
 
-  #"\ew": copy-region-as-kill
-  #"\C-w": kill-region
-  #"\ew": shell-backward-kill-word
+  # <- and ->
+  #"\e[C": forward-word
+  #"\e[D": backward-word
 
-  "\eE": vi-eword
-  "\eW": vi-fword
-  "\eF": vi-fword
-  "\eB": vi-bword
-  "\ee": vi-end-word
-  #"\ew": vi-next-word
-  "\ef": vi-next-word
-  "\eb": vi-prev-word
-  #"\ed": vi-delete
+  # esc <- and esc -> (needed for HPC)
+  "\M-\M-[C": forward-word
+  "\M-\M-[D": backward-word
 
-  #"\e[3;3~": kill-word
+  # shift <- and shift ->
+  "\e[1;2C": shell-forward-word
+  "\e[1;2D": shell-backward-word
 
+  # alt <- and alt ->
+  "\e[1;3C": forward-word
+  "\e[1;3D": backward-word
+
+  # ctrl <- and ctrl ->
+  "\e[1;5C": vi-fword
+  "\e[1;5D": vi-bword
+
+  # Default ctrl mappings for [a-z]
+  #% bind -p | \grep "^\"\\\C-[a-z]\"" | sort
+  "\C-a": beginning-of-line
+  "\C-b": backward-char
+  "\C-d": delete-char
+  "\C-e": end-of-line
+  "\C-f": forward-char
+  "\C-g": abort
+  "\C-h": backward-delete-char
+  "\C-i": complete
+  "\C-j": accept-line
+  "\C-k": kill-line
+  "\C-l": clear-screen
+  "\C-m": accept-line
+  "\C-n": next-history
+  "\C-o": operate-and-get-next
+  "\C-p": previous-history
+  "\C-q": quoted-insert
+  "\C-r": reverse-search-history
+  "\C-s": forward-search-history
+  "\C-t": transpose-chars
+  "\C-u": unix-line-discard
+  "\C-v": quoted-insert
+  "\C-w": unix-word-rubout
+  "\C-y": yank
+
+  # Other ctrl mappings
+  "\C-?": backward-delete-char
+  "\C-@": set-mark # also works for ctrl-space and alt-space
+  "\C-]": character-search
+  "\C-_": undo
+
+  # Default esc/alt mappings for [a-z]
+  #% bind -p | \grep "\\\e[a-z]" | sort
+  "\eb": backward-word
+  "\ec": capitalize-word
+  "\ed": kill-word
+  "\ef": forward-word
+  "\eg": glob-complete-word
+  "\el": downcase-word
+  "\en": non-incremental-forward-search-history
+  "\ep": non-incremental-reverse-search-history
+  "\er": revert-line
+  "\et": transpose-words
+  "\eu": upcase-word
+  "\ey": yank-pop
+
+  # Other esc/alt mappings
+  "\e~": complete-username
+  "\e ": set-mark
+  "\e!": complete-command
+  "\e#": insert-comment
+  "\e$": complete-variable
+  "\e&": tilde-expand
+  "\e*": insert-completions
+  "\e-": digit-argument
+  "\e.": insert-last-argument
+  "\e.": yank-last-arg # "\e." is repeated
+  "\e/": complete-filename
+  "\e<": beginning-of-history
+  "\e=": possible-completions
+  "\e>": end-of-history
+  "\e?": possible-completions
+  "\e@": complete-hostname
+  "\e\e": complete
+  "\e\\": delete-horizontal-space
+  "\e^": history-expand-line
+  "\e_": insert-last-argument
+  "\e_": yank-last-arg # "\e_" is repeated
+  "\e{": complete-into-braces
+
+  # Also
+  #"\e[0-9]": digit-argument
+  #"\e[A-Z]": do-lowercase-version
+
+  # Default ctrl-x mappings
+  "\C-x\C-e": edit-and-execute-command
+  "\C-x\C-g": abort
+  "\C-x\C-r": re-read-init-file
+  "\C-x\C-u": undo
+  "\C-x\C-v": display-shell-version
+  "\C-x\C-x": exchange-point-and-mark
+
+  "\C-x\C-?": backward-kill-line
+
+  "\C-xe": call-last-kbd-macro
+  "\C-xg": glob-list-expansions
+
+  # Also
+  #"\C-x[A-Z]": do-lowercase-version
+
+  # Other ctrl-x mappings
+  "\C-x~": possible-username-completions
+  "\C-x!": possible-command-completions
+  "\C-x$": possible-variable-completions
+  "\C-x(": start-kbd-macro
+  "\C-x)": end-kbd-macro
+  "\C-x*": glob-expand-word
+  "\C-x/": possible-filename-completions
+  "\C-x@": possible-hostname-completions
+
+  # Default ctrl/alt mappings
+  "\e\C-e": shell-expand-line
+  "\e\C-g": abort
+  "\e\C-h": backward-kill-word
+  "\e\C-i": dynamic-complete-history
+  "\e\C-r": revert-line
+  "\e\C-y": yank-nth-arg
+
+  "\e\C-?": backward-kill-word
+  "\e\C-]": character-search-backward
+
+  # Make changes here
+
+  # Changes for ctrl-[a-z] mappings
+  # ctrl-w can shut web browser with a terminal - reset ^W with "stty werase ^B" in .bashrc
+  #"\C-b": unix-word-rubout
+  #"\C-f": kill-word
+  #"\C-g": possible-completions
+  #"\C-g": menu-complete
+  #"\C-g": copy-region-as-kill
+  "\C-h": unix-word-rubout # also maps to ctrl-backspace
+
+  # Changes for esc/alt-[a-z] mappings
+  "\M-b": vi-prev-word
+  "\M-e": vi-end-word
+  "\M-f": vi-next-word
+  "\M-g": history-expand-line
+  #"\M-h": backward-kill-word
+  "\M-n": history-search-forward
+  "\M-p": history-search-backward
+  "\M-w": kill-region
+
+  # Others
+  "\M-/": dabbrev-expand
+  #"\C-xp": "PATH=${PATH}\e\C-e\C-a\ef\C-f"
+  "\eOQ": 'bcftools view '
+
+$endif
+
+# Doesn't work?
+$if mode=vi
+  set editing-mode vi
+  set keymap vi
+  set show-mode-in-prompt on
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
+$endif
+
+# Doesn't work?
+$if Python
+  "\M-i": "  "
+  "\M-u": "\d\d"
 $endif
