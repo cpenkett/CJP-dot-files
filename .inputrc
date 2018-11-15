@@ -236,27 +236,32 @@ $if mode=emacs
 
   # Changes for ctrl-[a-z] mappings
   # ctrl-w can shut web browser with a terminal - reset ^W with "stty werase ^B" in .bashrc
-  #"\C-b": unix-word-rubout
-  #"\C-f": kill-word
-  #"\C-g": possible-completions
-  #"\C-g": menu-complete
-  #"\C-g": copy-region-as-kill
-  "\C-h": unix-word-rubout # also maps to ctrl-backspace
+  "\C-h": unix-word-rubout # also maps to ctrl-backspace - clobbers previous "\C-h" mapping
 
-  # Changes for esc/alt-[a-z] mappings
-  "\M-b": vi-prev-word
+  # Changes for esc/alt-[a-z] mappings - missing [ijkmo]
+  "\M-a": possible-completions
+  "\M-b": vi-prev-word # Clobbers "\eb"
   "\M-e": vi-end-word
-  "\M-f": vi-next-word
-  "\M-g": history-expand-line
-  #"\M-h": backward-kill-word
-  "\M-n": history-search-forward
-  "\M-p": history-search-backward
-  "\M-w": kill-region
+  "\M-f": vi-next-word # Clobbers "\ef"
+  "\M-h": backward-kill-word
+  "\M-n": history-search-forward # Clobbers "\en"
+  "\M-p": history-search-backward # Clobbers "\ep"
+  "\M-q": copy-region-as-kill
+  "\M-s": menu-complete
+  "\M-v": 'bcftools '
+  "\M-w": unix-word-rubout
+  "\M-x": kill-region
+  "\M-z": history-expand-line
 
-  # Others
-  "\M-/": dabbrev-expand
+  # Others - clobbers "\e[BEF]"
+  "\M-B": unix-word-rubout
+  "\M-E:" vi-eword
+  "\M-F": kill-word
+  "\M-,": dabbrev-expand
+
+  # Macros
   #"\C-xp": "PATH=${PATH}\e\C-e\C-a\ef\C-f"
-  "\eOQ": 'bcftools view '
+  #"\eOQ": 'bcftools view '
 
 $endif
 
