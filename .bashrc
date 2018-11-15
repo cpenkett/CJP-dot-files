@@ -6,6 +6,8 @@ fi
 
 [ -z "$PS1" ] && return
 
+stty werase ^H
+
 #set -C
 set -o noclobber
 #set -u
