@@ -92,6 +92,7 @@ export PYTHONSTARTUP="$HOME/.pythonrc"
 
 #HISTFILE="$HOME/.bash_history"
 HISTIGNORE='&:ls:l:ll:lt:lsd:h:j:[bf]g:exit'
+#HISTCONTROL='ignoreboth:erasedups'
 HISTCONTROL='ignoreboth'
 HISTTIMEFORMAT='[%Y %b %_d %T]  '
 HISTFILESIZE=1000000
